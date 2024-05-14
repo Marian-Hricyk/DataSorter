@@ -17,7 +17,7 @@ public class Main {
     DateSorter sorter = new DateSorter();
     List<LocalDate> sortedDates = new ArrayList<>(sorter.sortDates(unsortedDates));
 
-    // Виведення відсортованих дат
+
     for (LocalDate date : sortedDates) {
       System.out.println(date);
     }

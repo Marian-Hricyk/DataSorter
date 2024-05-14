@@ -1,16 +1,13 @@
 package org.example.sample;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class DateSorter {
   public Collection<LocalDate> sortDates(List<LocalDate> unsortedDates) {
-    unsortedDates.sort(Comparator.comparing(LocalDate::getMonthValue)
-            .thenComparing(LocalDate::getMonth, Comparator.comparing(m -> m.toString().contains("r")))
-            .reversed());
-
-    return unsortedDates;
+    return unsortedDates.stream()
+            .sorted(Comparator.comparing((LocalDate d) -> !d.getMonth().name().toLowerCase().contains("r"))
+                    .thenComparing(LocalDate::compareTo))
+            .collect(Collectors.toList());
   }
 }
